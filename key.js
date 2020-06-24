@@ -2,7 +2,7 @@ import crypto from "crypto";
 import secp256k1 from "secp256k1";
 import createKeccakHash from "keccak";
 import Mnemonic from "bitcore-mnemonic";
-import { create } from "domain";
+
 
 function createPrivateKey() {
     let privateKey;
@@ -57,12 +57,12 @@ function mnemonicToPrivateKey(mnemonic) {
   return Buffer.from(privateKey.toString(), "hex");
 }
 
-const mnemonic = createMnemonic(12);
-// const mnemonic = new Mnemonic("단어") => mnemonic 단어들을 넣어도 개인키, 주소 생성됨
-console.log(mnemonic.toString());
-
-const privateKey = mnemonicToPrivateKey(mnemonic);
-console.log(privateKey.toString("hex"));
-
-const address = privateKeyToAddress(privateKey);
-console.log(address);
+export default {
+  createPrivateKey,
+  createPublicKey,
+  createAddress,
+  toChecksumAddress,
+  privateKeyToAddress,
+  createMnemonic,
+  mnemonicToPrivateKey,
+};
